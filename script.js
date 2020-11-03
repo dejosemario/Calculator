@@ -103,3 +103,23 @@ let calculator_buttons = [
     }
 ];
 
+function createButtons(){
+    const btns_per_row = 4;
+    let added_btn = 0;
+
+    calculator_buttons.forEach((button, index)=>{
+       if(added_btn % btns_per_row == 0){
+           input_element.innerHTML += `<div class = "row"></div>`;
+        }         
+
+        const row = document.querySelector(".row:last-child");
+
+        row.innerHTML += `<button id = "${button.name}">
+                        ${button.symbol}
+                        <button>`;
+
+        added_btn++
+    }
+    )
+}
+createButtons();
