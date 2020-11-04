@@ -19,11 +19,12 @@ html{
     transform: translate(-50%, -50%);
 }
 
-.calc-container{
+.container-calc{
     background-color: #1d1d1d;
 
     width: 300px;
     height: auto;
+    max-width: 100%;
 
     border-radius: 0 0 30px 30px;
 }
