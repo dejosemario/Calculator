@@ -123,3 +123,64 @@ function createButtons(){
     )
 }
 createButtons();
+
+//adding an event listener on the input class
+input_element.addEventListener("click", event=>{
+    const target_btn = event.target;
+
+    calculator_buttons.forEach(button =>{
+        if(button.name ==target_btn.id)calculator(button);
+    })
+})
+
+//calculator data
+let data = {
+    operation : [],
+    result :[],
+}
+
+//calculator button
+function calculator(button){
+  if(button.type == "number"){
+      data.operation.push(button.symbol);
+      data.result.push(button.formula);
+  }
+  else if(button.type == "operator"){
+    data.operation.push(button.symbol);
+    data.result.push(button.formula);    
+  }
+  else if(button.type =="key"){
+    if(button.name =="clear"){
+        data.operation =[];
+        data.result = [];
+
+    }
+    else if(button.name == "delete"){
+        data.operation.pop();
+        data.result.pop();
+        updateOutputResult(0)
+    }
+  }
+  //getting the result once one clicks calculate
+  else if(button.type =="calculate"){
+    let join_result = data.result.join('');
+    let result = eval(join_result);
+    updateOutputResult(result);
+    data.operation = [];
+    data.result = [];
+    data.operation.push(result);
+    data.result.push(result);
+    return;
+
+  }
+  updateOutputOpeartion(data.operation.join(''));
+}
+//updating output result to 0 after deleting
+function updateOutputResult(result){
+    output_result_element.innerHTML = result;
+}
+
+//updating output operation 
+function updateOutputOpeartion(operation){
+    output_operation_element.innerHTML = operation;
+}
